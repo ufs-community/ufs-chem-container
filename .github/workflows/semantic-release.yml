@@ -148,12 +148,16 @@ jobs:
         run: |
           TARGET="${{ inputs.target_branch || github.base_ref || github.ref_name }}"
           echo "Evaluating release against target branch: $TARGET"
-          git checkout -B "$TARGET"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           if [ -n "$PR_TITLE" ]; then
+            PR_HEAD="$(git rev-parse HEAD)"
+            git checkout -B "$TARGET" "origin/$TARGET"
+            git merge --squash "$PR_HEAD" || git merge --abort || true
             echo "Applying synthetic squash-merge commit from PR title: $PR_TITLE"
-            git config user.name "github-actions[bot]"
-            git config user.email "github-actions[bot]@users.noreply.github.com"
             git commit --allow-empty -m "$PR_TITLE"
+          else
+            git checkout -B "$TARGET"
           fi
       - name: Python Semantic Release
         uses: python-semantic-release/python-semantic-release@v10
