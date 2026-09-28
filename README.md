@@ -23,10 +23,10 @@ Images are hosted on Docker Hub under the [noaaepic](https://hub.docker.com/u/no
 | Branch / Context | Image Name | Tags | Purpose |
 |---|---|---|---|
 | `main` | `ufschem-spack-base-ubuntu-gcc-13` | `<version>` (e.g. `0.1.0`), `latest` | Stable production base image |
-| `develop` | `ufschem-spack-base-ubuntu-gcc-13-dev` | `<version>-rc.X` (e.g. `0.1.0-rc.1`) | Prerelease release candidate |
+| `develop` | `ufschem-spack-base-ubuntu-gcc-13-dev` | `<version>-rc.X` (e.g. `0.1.0-rc.1`), `latest` | Prerelease release candidate |
 | PR with `sandbox-build` | `ufschem-spack-base-ubuntu-gcc-13-sandbox` | `<sandbox-version>` (e.g. `7.7.7-rc.1`) | Temporary sandbox image for external application testing prior to merge |
 
-> **Note**: Prerelease builds on `develop` never update the `:latest` tag on Docker Hub.
+> **Note**: Prerelease builds on `develop` update the `:latest` tag on the `-dev` repository (`<image>-dev:latest`). Production builds on `main` update `:latest` on the production repository. Sandbox builds on PRs omit the `:latest` tag to prevent collisions across concurrent pull requests.
 
 ### Pulling Pre-built Images from Docker Hub
 
