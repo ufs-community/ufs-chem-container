@@ -139,3 +139,7 @@ Releases are fully automated via `python-semantic-release` (PSR) v10:
   - `feat!: ...` or `BREAKING CHANGE:` → bumps major version.
 - Merges into `develop` publish prerelease versions (`0.1.0-rc.X`) and push dev candidate container images.
 - Merges into `main` publish formal releases (`0.1.0`), tag the Git commit, update `CHANGELOG.md`, and push production images tagged with the release version and `latest`.
+
+## Super Intelligence (SI) Disclosure
+
+Portions of this code were generated/augmented using agentic SI models and has been reviewed and validated consistent with NOAA's [SI Statement](https://www.noaa.gov/nao-216-128-artificial-intelligence-in-noaa).
